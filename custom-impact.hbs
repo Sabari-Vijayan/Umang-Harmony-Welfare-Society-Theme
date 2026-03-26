@@ -1,0 +1,25 @@
+{{!< default}}
+
+{{#post}}
+<article class="impact-page {{post_class}}">
+
+    {{!-- Hero Banner (Editable via Feature Image) --}}
+    <section class="impact-hero {{#unless feature_image}}no-image{{/unless}}" 
+             style="{{#if feature_image}}background-image: url('{{feature_image}}');{{/if}}">
+        <div class="container">
+            <h1 class="impact-title">{{title}}</h1>
+            {{#if custom_excerpt}}
+                <p class="impact-lead">{{custom_excerpt}}</p>
+            {{/if}}
+        </div>
+    </section>
+
+    {{!-- Main Content (Editable via the Ghost Editor) --}}
+    <section class="impact-body section-padding">
+        <div class="container gh-content">
+            {{{content}}}
+        </div>
+    </section>
+
+</article>
+{{/post}}

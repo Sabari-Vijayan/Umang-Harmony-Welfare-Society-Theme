@@ -1,0 +1,183 @@
+{{!< default}}
+{{!--
+  index.hbs
+  ==========
+  Homepage template for Umang Harmony Welfare Society.
+  Ghost automatically uses this file for the root URL (/).
+
+  Key Ghost Handlebars helpers used here:
+  {{#foreach posts}}   → loops over the current page's posts
+  {{title}}            → post title
+  {{excerpt}}          → auto-generated excerpt
+  {{feature_image}}    → featured image URL
+  {{url}}              → the post's full URL
+  {{primary_tag}}      → the first tag assigned to the post
+  {{published_at}}     → publish date
+  {{reading_time}}     → estimated reading time
+  {{pagination}}       → renders prev/next page links
+--}}
+
+{{!-- 1. HERO SECTION --}}
+<section class="hero" aria-label="Hero banner">
+  <div class="hero-slides">
+    <div class="hero-slide is-active" style="background-image: url('{{@site.cover_image}}')">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        {{#if @site.logo}}
+          <img src="{{@site.logo}}" alt="{{@site.title}}" class="hero-logo">
+        {{else}}
+          <span class="hero-tag">{{@site.title}}</span>
+        {{/if}}
+        <h1 class="hero-title">{{@custom.hero_title}}</h1>
+        <p class="hero-subtitle">{{@custom.hero_subtitle}}</p>
+        <div class="hero-actions">
+          <a href="{{@site.url}}/about/" class="btn btn-primary btn-lg">Our Story</a>
+          <a href="{{@site.url}}/partner-with-us/" class="btn btn-outline-white btn-lg">Partner With Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- 2. IMPACT STATS BAR --}}
+<section class="stats-bar" aria-label="Impact statistics">
+  <div class="container stats-inner">
+    <div class="stat-item">
+      <span class="stat-number">{{@custom.women_engaged}}</span>
+      <span class="stat-label">Women Engaged</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item">
+      <span class="stat-number">{{@custom.women_earning}}</span>
+      <span class="stat-label">Women Earning</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item">
+      <span class="stat-number">{{@custom.villages_covered}}</span>
+      <span class="stat-label">Villages Covered</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item">
+      <span class="stat-number">{{@custom.sroi}}</span>
+      <span class="stat-label">SROI</span>
+    </div>
+  </div>
+</section>
+
+{{!-- 3. ABOUT STRIP --}}
+<section class="about-strip section-padding" aria-label="About Umang Harmony Welfare Society">
+  <div class="container about-strip-inner">
+    <div class="about-strip-text">
+      <span class="section-eyebrow">Who We Are</span>
+      <h2 class="section-title">{{@custom.about_section_title}}</h2>
+      <p>{{@custom.about_section_description}}</p>
+      <a href="{{@site.url}}/about/" class="btn btn-primary">Read More</a>
+    </div>
+    <div class="about-strip-visual">
+      <div class="about-card about-card--green">
+        <div class="about-card-icon" aria-hidden="true"></div>
+        <h3>Livelihood Creation</h3>
+        <p>Simple, scalable, home-based income activities like cotton wick production.</p>
+      </div>
+      <div class="about-card about-card--red">
+        <div class="about-card-icon" aria-hidden="true"></div>
+        <h3>Skill Development</h3>
+        <p>Training women in production, quality control, and productivity improvement.</p>
+      </div>
+      <div class="about-card about-card--blue">
+        <div class="about-card-icon" aria-hidden="true"></div>
+        <h3>Financial Inclusion</h3>
+        <p>Supporting access to bank accounts, government schemes, and formal financial systems.</p>
+      </div>
+      <div class="about-card about-card--orange">
+        <div class="about-card-icon" aria-hidden="true"></div>
+        <h3>Market Linkages</h3>
+        <p>Connecting women to reliable buyers to ensure steady and predictable income.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- 4. LATEST ACTIVITIES (Ghost Posts) --}}
+<section class="latest-posts section-padding section-bg-light" aria-label="Latest activities">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">What We've Been Doing</span>
+      <h2 class="section-title">Latest Updates</h2>
+      <p class="section-subtitle">Stories and updates from our work across Satna and Maihar District.</p>
+    </div>
+
+    <div class="posts-grid">
+      {{#foreach posts limit="6"}}
+        <article class="post-card">
+          {{#if feature_image}}
+            <a href="{{url}}" class="post-card-image-link" tabindex="-1" aria-hidden="true">
+              <div class="post-card-image" style="background-image: url('{{img_url feature_image size="m"}}')">
+                {{#primary_tag}}
+                  <span class="post-card-tag">{{name}}</span>
+                {{/primary_tag}}
+              </div>
+            </a>
+          {{/if}}
+          <div class="post-card-body">
+            <div class="post-card-meta">
+              <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+              {{#if reading_time}}
+                <span class="post-reading-time">· {{reading_time}} min read</span>
+              {{/if}}
+            </div>
+            <h3 class="post-card-title">
+              <a href="{{url}}">{{title}}</a>
+            </h3>
+            <p class="post-card-excerpt">{{excerpt words="20"}}</p>
+            <a href="{{url}}" class="post-card-link">Read More →</a>
+          </div>
+        </article>
+      {{else}}
+        <p class="no-posts">No updates published yet. Check back soon!</p>
+      {{/foreach}}
+    </div>
+
+    <div class="section-footer-link">
+      <a href="{{@site.url}}/blog/" class="btn btn-outline">View All Updates</a>
+    </div>
+  </div>
+</section>
+
+{{!-- 5. MISSION HIGHLIGHT --}}
+<section class="mission-highlight section-padding">
+  <div class="container mission-inner">
+    <div class="mission-visual" aria-hidden="true">
+      <div class="mission-plant-icon">💰</div>
+    </div>
+    <div class="mission-text">
+      <span class="section-eyebrow">Our Flagship Programme</span>
+      <h2 class="section-title">{{@custom.flagship_section_title}}</h2>
+      <p>{{@custom.flagship_section_description}}</p>
+      <a href="{{@site.url}}/our-programmes/" class="btn btn-primary">See Our Programmes</a>
+    </div>
+  </div>
+</section>
+
+{{!-- 6. IMPACT STORY STRIP --}}
+<section class="sponsors section-padding section-bg-light" aria-label="Impact story">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Impact Story</span>
+      <h2 class="section-title">{{@custom.impact_story_title}}</h2>
+    </div>
+    <div style="max-width:720px; margin:0 auto; text-align:center;">
+      <p style="font-size:1.1rem; line-height:1.8; color:var(--color-text-light);">{{@custom.impact_story_content}}</p>
+      <a href="{{@site.url}}/impact/" class="btn btn-outline" style="margin-top:1.5rem;">See Full Impact</a>
+    </div>
+  </div>
+</section>
+
+{{!-- Ghost pagination --}}
+{{#if pagination.pages}}
+  {{#if pagination.prev}}
+    <div class="pagination-wrapper">
+      {{pagination}}
+    </div>
+  {{/if}}
+{{/if}}

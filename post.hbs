@@ -1,0 +1,223 @@
+{{!--
+  post.hbs
+  ==========
+  Ghost uses this template for every individual blog post URL.
+
+  Key Ghost helpers used here:
+  {{#post}}            → enters the post context; gives access to all post properties
+  {{title}}            → post title
+  {{content}}          → the rendered post body (HTML from Ghost editor) — ALWAYS use triple braces {{{content}}} to prevent escaping
+  {{feature_image}}    → featured image URL
+  {{feature_image_alt}}→ alt text for the featured image
+  {{feature_image_caption}} → caption if set
+  {{published_at}}     → publish date
+  {{updated_at}}       → last updated date
+  {{reading_time}}     → estimated reading time
+  {{primary_author}}   → author object: {{primary_author.name}}, {{primary_author.profile_image}}
+  {{primary_tag}}      → first tag object: {{primary_tag.name}}, {{primary_tag.url}}
+  {{tags}}             → all tags as a comma-separated list
+  {{excerpt}}          → auto-excerpt for meta/SEO
+  {{url}}              → canonical URL of this post
+  {{og_image}}, {{twitter_image}} → social sharing images (if set)
+
+  Ghost also provides related posts via {{#get "posts"}} with filter="tag:{{primary_tag.slug}}+id:-{{id}}"
+--}}
+
+{{!< default}}
+
+{{#post}}
+
+{{!-- SEO: Ghost injects correct meta tags via ghost_head in default.hbs --}}
+
+<article class="post-single" itemscope itemtype="https://schema.org/Article">
+
+  {{!-- 1. POST HEADER --}}
+  <header class="post-header {{#unless feature_image}}post-header--no-image{{/unless}}">
+
+    {{!-- Breadcrumb --}}
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{@site.url}}/">Home</a>
+      <span aria-hidden="true">›</span>
+      {{#primary_tag}}
+        <a href="{{url}}">{{name}}</a>
+        <span aria-hidden="true">›</span>
+      {{/primary_tag}}
+      <span aria-current="page">{{title}}</span>
+    </nav>
+
+    {{!-- Tags --}}
+    <div class="post-tags">
+      {{#foreach tags}}
+        <a href="{{url}}" class="post-tag-badge">{{name}}</a>
+      {{/foreach}}
+    </div>
+
+    <h1 class="post-title" itemprop="headline">{{title}}</h1>
+
+    {{#if custom_excerpt}}
+      <p class="post-subtitle">{{custom_excerpt}}</p>
+    {{/if}}
+
+    {{!-- Meta row --}}
+    <div class="post-meta">
+      {{#primary_author}}
+        <a href="{{url}}" class="post-author-link" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          {{#if profile_image}}
+            <img src="{{profile_image}}" alt="{{name}}" class="post-author-avatar" width="36" height="36">
+          {{else}}
+            <span class="post-author-avatar post-author-avatar--placeholder" aria-hidden="true">
+              {{name.[0]}}
+            </span>
+          {{/if}}
+          <span itemprop="name">{{name}}</span>
+        </a>
+      {{/primary_author}}
+
+      <time datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">
+        {{date format="DD MMMM YYYY"}}
+      </time>
+
+      {{#if reading_time}}
+        <span class="post-reading-time">{{reading_time}} min read</span>
+      {{/if}}
+    </div>
+
+  </header>
+
+  {{!-- 2. FEATURED IMAGE --}}
+  {{#if feature_image}}
+    <figure class="post-feature-image-wrap">
+      <img
+        src="{{img_url feature_image size="l"}}"
+        alt="{{feature_image_alt}}"
+        class="post-feature-image"
+        width="1200"
+        height="630"
+        loading="eager"
+        itemprop="image"
+      >
+      {{#if feature_image_caption}}
+        <figcaption class="post-image-caption">{{feature_image_caption}}</figcaption>
+      {{/if}}
+    </figure>
+  {{/if}}
+
+  {{!-- 3. POST CONTENT --}}
+  {{!--
+    IMPORTANT: Always use {{{content}}} with triple braces.
+    Ghost renders the content as HTML. Double braces {{content}} would
+    HTML-escape all tags, turning <p> into &lt;p&gt; and breaking layout.
+    Ghost's built-in CSS classes like .kg-* are used by card embeds
+    (image galleries, video, bookmark cards, etc.) — our screen.css
+    adds styles for these.
+  --}}
+  <div class="post-content gh-content" itemprop="articleBody">
+    {{{content}}}
+  </div>
+
+  {{!-- 4. POST FOOTER --}}
+  <footer class="post-footer">
+
+    {{!-- Tags --}}
+    {{#if tags}}
+      <div class="post-footer-tags">
+        <strong>Topics:</strong>
+        {{#foreach tags}}
+          <a href="{{url}}" class="tag-pill">{{name}}</a>
+        {{/foreach}}
+      </div>
+    {{/if}}
+
+    {{!-- Share row --}}
+    <div class="post-share">
+      <span class="post-share-label">Share:</span>
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+        class="share-btn share-btn--facebook"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on Facebook"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+      <a
+        href="https://twitter.com/intent/tweet?url={{url absolute="true"}}&text={{title}}"
+        class="share-btn share-btn--twitter"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on Twitter"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.745l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Twitter
+      </a>
+      <a
+        href="https://wa.me/?text={{title}}%20{{url absolute="true"}}"
+        class="share-btn share-btn--whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Share on WhatsApp"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+
+    {{!-- Author bio card --}}
+    {{#primary_author}}
+      <div class="author-card">
+        {{#if profile_image}}
+          <img src="{{profile_image}}" alt="{{name}}" class="author-card-avatar" width="80" height="80">
+        {{else}}
+          <div class="author-card-avatar author-card-avatar--placeholder">{{name.[0]}}</div>
+        {{/if}}
+        <div class="author-card-info">
+          <h3 class="author-card-name"><a href="{{url}}">{{name}}</a></h3>
+          {{#if bio}}<p class="author-card-bio">{{bio}}</p>{{/if}}
+        </div>
+      </div>
+    {{/primary_author}}
+
+  </footer>
+
+</article>
+
+{{!-- 5. RELATED POSTS --}}
+{{!--
+  {{#get "posts"}} is Ghost's "data" helper for fetching posts with a custom query.
+  - limit="3"  → fetch 3 posts
+  - filter     → only posts with the same primary tag, excluding the current post (id:-{{id}})
+  - include    → pull in related data (tags, authors) in the same query
+--}}
+{{#get "posts" limit="3" filter="tags:{{primary_tag.slug}}+id:-{{id}}" include="tags,authors"}}
+  {{#if posts}}
+    <aside class="related-posts section-padding section-bg-light" aria-label="Related posts">
+      <div class="container">
+        <h2 class="related-posts-title">More Like This</h2>
+        <div class="posts-grid posts-grid--small">
+          {{#foreach posts}}
+            <article class="post-card">
+              {{#if feature_image}}
+                <a href="{{url}}" class="post-card-image-link" tabindex="-1" aria-hidden="true">
+                  <div class="post-card-image" style="background-image: url('{{img_url feature_image size="s"}}')">
+                    {{#primary_tag}}<span class="post-card-tag">{{name}}</span>{{/primary_tag}}
+                  </div>
+                </a>
+              {{/if}}
+              <div class="post-card-body">
+                <div class="post-card-meta">
+                  <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                </div>
+                <h3 class="post-card-title"><a href="{{url}}">{{title}}</a></h3>
+                <a href="{{url}}" class="post-card-link">Read More →</a>
+              </div>
+            </article>
+          {{/foreach}}
+        </div>
+      </div>
+    </aside>
+  {{/if}}
+{{/get}}
+
+{{/post}}
+

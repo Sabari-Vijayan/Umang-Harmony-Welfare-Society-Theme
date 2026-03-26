@@ -1,0 +1,87 @@
+{{!--
+  partials/header.hbs
+  =====================
+  This file is included via {{> header}} in default.hbs.
+
+  Ghost Handlebars helpers used here:
+  - {{@site.url}}       → your Ghost site's base URL
+  - {{@site.title}}     → site name from Ghost Admin → Settings → General
+  - {{@site.logo}}      → logo uploaded in Ghost Admin → Settings → General
+  - {{@site.navigation}} → nav links configured in Ghost Admin → Settings → Navigation
+  - {{navigation}}      → built-in Ghost helper that renders navigation items
+  - {{asset "..."}}     → resolves a file in your theme's /assets/ folder
+--}}
+
+<header class="site-header" role="banner">
+
+  {{!-- Top utility bar: phone, email, socials --}}
+  <div class="header-topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-contact">
+        <a href="mailto:{{@custom.contact_email}}" class="topbar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          {{@custom.contact_email}}
+        </a>
+        <span class="topbar-link" style="pointer-events:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          {{@custom.contact_address}}
+        </span>
+      </div>
+      <div class="topbar-social">
+        {{#if @site.facebook}}
+        <a href="{{facebook_url @site.facebook}}" class="social-link" aria-label="Facebook" rel="noopener noreferrer" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        {{/if}}
+        {{#if @site.twitter}}
+        <a href="{{twitter_url @site.twitter}}" class="social-link" aria-label="Twitter" rel="noopener noreferrer" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  {{!-- Main navigation bar --}}
+  <div class="header-main">
+    <div class="container header-inner">
+
+      {{!-- Logo / Site Name --}}
+      <a href="{{@site.url}}" class="site-logo-link" aria-label="{{@site.title}} – Home">
+        {{#if @site.logo}}
+          <img src="{{@site.logo}}" alt="{{@site.title}}" class="site-logo" width="160" height="56">
+        {{else}}
+          <span class="site-logo-text">{{@site.title}}</span>
+        {{/if}}
+      </a>
+
+      {{!-- Desktop Navigation --}}
+      <nav class="site-nav" role="navigation" aria-label="Primary navigation">
+        {{navigation}}
+      </nav>
+
+      {{!-- CTA Button --}}
+      <a href="{{@site.url}}/partner-with-us/" class="btn btn-primary header-cta">Partner With Us</a>
+
+      {{!-- Mobile hamburger button --}}
+      <button
+        id="menu-toggle"
+        class="menu-toggle"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+
+  {{!-- Mobile Menu --}}
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" role="navigation">
+    {{navigation}}
+    <a href="{{@site.url}}/partner-with-us/" class="mobile-donate-btn">Partner With Us</a>
+  </nav>
+
+</header>

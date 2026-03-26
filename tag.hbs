@@ -1,0 +1,56 @@
+{{!< default}}
+{{!--
+  tag.hbs
+  ==========
+  Template for tag pages (e.g., /tag/impact/).
+--}}
+
+<div class="tag-header section-padding">
+  <div class="container">
+    {{#tag}}
+      <span class="section-eyebrow">Tag</span>
+      <h1 class="section-title">{{name}}</h1>
+      {{#if description}}
+        <p class="section-subtitle">{{description}}</p>
+      {{/if}}
+      {{#if feature_image}}
+        <img src="{{img_url feature_image size="xl"}}" alt="{{name}}" class="tag-image">
+      {{/if}}
+    {{/tag}}
+  </div>
+</div>
+
+<main class="container section-padding">
+  <div class="posts-grid">
+    {{#foreach posts}}
+      <article class="post-card">
+        {{#if feature_image}}
+          <a href="{{url}}" class="post-card-image-link" tabindex="-1" aria-hidden="true">
+            <div class="post-card-image" style="background-image: url('{{img_url feature_image size="m"}}')">
+              {{#primary_tag}}
+                <span class="post-card-tag">{{name}}</span>
+              {{/primary_tag}}
+            </div>
+          </a>
+        {{/if}}
+        <div class="post-card-body">
+          <div class="post-card-meta">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+            {{#if reading_time}}
+              <span class="post-reading-time">· {{reading_time}} min read</span>
+            {{/if}}
+          </div>
+          <h3 class="post-card-title">
+            <a href="{{url}}">{{title}}</a>
+          </h3>
+          <p class="post-card-excerpt">{{excerpt words="20"}}</p>
+          <a href="{{url}}" class="post-card-link">Read More →</a>
+        </div>
+      </article>
+    {{else}}
+      <p class="no-posts">No posts found in this tag.</p>
+    {{/foreach}}
+  </div>
+
+  {{pagination}}
+</main>

@@ -1,0 +1,90 @@
+{
+  "name": "umang-harmony-theme",
+  "description": "Official theme for Umang Harmony Welfare society",
+  "version": "0.0.1",
+  "license": "MIT",
+  "keywords": [
+    "ghost-theme",
+    "ghost",
+    "theme"
+  ],
+  "author": {
+    "name": "Sabari",
+    "email": "vijayansabari06@gmail.com"
+  },
+  "config": {
+    "posts_per_page": 10,
+    "cards_assets": true,
+    "custom": {
+      "hero_title": {
+        "type": "text",
+        "default": "Empowering Rural Women through Sustainable Livelihoods"
+      },
+      "hero_subtitle": {
+        "type": "text",
+        "default": "Working with rural women in Satna, Madhya Pradesh to build home-based livelihood opportunities, strengthen financial literacy, and enable long-term economic independence."
+      },
+      "about_section_title": {
+        "type": "text",
+        "default": "A Livelihood-Focused Organisation"
+      },
+      "about_section_description": {
+        "type": "text",
+        "default": "Umang Harmony Welfare Society is a livelihood-focused organisation established in August 2024 in Satna, Madhya Pradesh, registered under the Madhya Pradesh Societies Registration Act, 1973."
+      },
+      "flagship_section_title": {
+        "type": "text",
+        "default": "Cotton Wick Production"
+      },
+      "flagship_section_description": {
+        "type": "text",
+        "default": "Our flagship initiative supports 1,000 rural women from SC/ST and OBC communities to produce high-quality cotton wicks for households and temples — earning ₹1,500–₹2,000 per month from home-based work, on their own schedule."
+      },
+      "impact_story_title": {
+        "type": "text",
+        "default": "A Spark That Lit 300 Lives"
+      },
+      "impact_story_content": {
+        "type": "text",
+        "default": "Meena from Nadan village in Satna had never earned a rupee of her own when she first joined the programme. Through Umang Harmony's initiative, she — along with 300 women — was trained in cotton wick-making and supported with basic financial literacy. Today, over 1,000 women are earning ₹1,500–₹2,000 per month. Meena now contributes to her household and participates in financial decisions with confidence."
+      },
+      "footer_tagline": {
+        "type": "text",
+        "default": "A livelihood-focused organisation working with rural women in Satna, Madhya Pradesh to build economic independence through sustainable home-based income."
+      },
+      "footer_registration": {
+        "type": "text",
+        "default": "Registered under M.P. Societies Registration Act, 1973. Est. August 2024, Satna, M.P."
+      },
+      "contact_email": {
+        "type": "text",
+        "default": "contact@umangharmony.org"
+      },
+      "contact_address": {
+        "type": "text",
+        "default": "Satna / Maihar District, Madhya Pradesh, India"
+      },
+      "women_engaged": {
+        "type": "text",
+        "default": "1000+"
+      },
+      "women_earning": {
+        "type": "text",
+        "default": "700+"
+      },
+      "villages_covered": {
+        "type": "text",
+        "default": "22"
+      },
+      "sroi": {
+        "type": "text",
+        "default": "2.8x"
+      }
+    }
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1"
+  }
+}

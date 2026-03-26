@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{meta_title}}</title>
+  <meta name="description" content="{{meta_description}}">
+
+  {{!-- Canonical URL: tells search engines this is the definitive URL --}}
+  <link rel="canonical" href="{{canonical}}">
+
+  {{!-- Open Graph tags: what shows up when sharing on WhatsApp, Facebook --}}
+  <meta property="og:site_name" content="{{@site.title}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{meta_title}}">
+  <meta property="og:description" content="{{meta_description}}">
+  {{#if @site.cover_image}}
+  <meta property="og:image" content="{{@site.cover_image}}">
+  {{/if}}
+
+  {{!-- Twitter/X card --}}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{meta_title}}">
+  <meta name="twitter:description" content="{{meta_description}}">
+
+  {{!-- RSS Feed link --}}
+  <link rel="alternate" type="application/rss+xml" title="{{@site.title}}" href="{{@site.url}}/rss/">
+
+  {{!-- Ghost outputs required head tags here (pagination, structured data, etc.) --}}
+  {{ghost_head}}
+
+  {{!-- Google Fonts: Poppins for headings, Lato for body --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  {{!--
+    asset helper: Ghost resolves this to /assets/css/screen.css?v=HASH
+    The hash is a cache-busting fingerprint that changes whenever you update the file.
+    Always use {{asset}} instead of hardcoding paths.
+  --}}
+  <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}">
+</head>
+<body class="{{body_class}}">
+
+  {{!-- Skip link: accessibility for keyboard/screen-reader users --}}
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  {{!--
+    {{> header}} is a partial include.
+    Ghost looks for the file at partials/header.hbs
+  --}}
+  {{> header}}
+
+  {{!-- #main-content is the skip-link target --}}
+  <main id="main-content">
+    {{!-- {{{body}}} is where child templates (index.hbs, post.hbs, page.hbs) inject their content --}}
+    {{{body}}}
+  </main>
+
+  {{> footer}}
+
+  {{!-- Ghost outputs required scripts here (e.g., member login/portal scripts) --}}
+  {{ghost_foot}}
+
+  {{!-- Mobile menu toggle JS --}}
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', function () {
+        const isOpen = mobileMenu.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+        menuToggle.querySelector('.bar:nth-child(1)').style.transform = isOpen ? 'rotate(45deg) translate(5px, 5px)' : '';
+        menuToggle.querySelector('.bar:nth-child(2)').style.opacity = isOpen ? '0' : '1';
+        menuToggle.querySelector('.bar:nth-child(3)').style.transform = isOpen ? 'rotate(-45deg) translate(5px, -5px)' : '';
+      });
+    }
+
+    // Sticky header shadow on scroll
+    const header = document.querySelector('.site-header');
+    if (header) {
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('is-scrolled', window.scrollY > 20);
+      });
+    }
+  </script>
+</body>
+</html>
+
