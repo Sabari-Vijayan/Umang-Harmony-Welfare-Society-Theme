@@ -1,0 +1,58 @@
+{{!< default}}
+
+{{#contentFor "styles"}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/works-page.css"}}" />
+{{/contentFor}}
+
+{{#post}}
+
+<header class="works-header {{#if feature_image}}has-image{{/if}}" 
+     {{#if feature_image}}style="background-image: url('{{feature_image}}');"{{/if}}>
+    <div class="container">
+        <h1 class="works-title">{{title}}</h1>
+        {{#if custom_excerpt}}
+            <p class="works-lead">{{custom_excerpt}}</p>
+        {{/if}}
+    </div>
+</header>
+
+<div class="works-page-content section-padding">
+    <div class="container container--narrow">
+        
+        {{!-- 1. Page Content from Ghost Editor --}}
+        <div class="works-intro gh-content">
+            {{{content}}}
+        </div>
+
+        {{!-- 2. Vertical Works List --}}
+        <div class="works-list">
+            {{#get "posts" limit="all" include="tags,authors" order="published_at desc"}}
+                {{#foreach posts}}
+                    <article class="work-item">
+                        
+                        {{#if feature_image}}
+                        <a href="{{url}}" class="work-image-link" aria-label="{{title}}">
+                            <img src="{{img_url feature_image size="m"}}" alt="{{title}}" class="work-image" loading="lazy">
+                        </a>
+                        {{/if}}
+
+                        <div class="work-content">
+                            <span class="work-meta">{{date format="DD MMM YYYY"}} {{#if primary_tag}}· {{primary_tag.name}}{{/if}}</span>
+                            <h2 class="work-item-title">
+                                <a href="{{url}}">{{title}}</a>
+                            </h2>
+                            <p class="work-excerpt">{{excerpt words="30"}}</p>
+                            <a href="{{url}}" class="work-link">Read Full Story →</a>
+                        </div>
+
+                    </article>
+                {{else}}
+                    <p class="no-posts">Our latest initiatives are currently being documented. Check back soon!</p>
+                {{/foreach}}
+            {{/get}}
+        </div>
+
+    </div>
+</div>
+
+{{/post}}

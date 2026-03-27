@@ -40,6 +40,8 @@
     Always use {{asset}} instead of hardcoding paths.
   --}}
   <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}">
+
+  {{{block "styles"}}}
 </head>
 <body class="{{body_class}}">
 
@@ -63,29 +65,8 @@
   {{!-- Ghost outputs required scripts here (e.g., member login/portal scripts) --}}
   {{ghost_foot}}
 
-  {{!-- Mobile menu toggle JS --}}
-  <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (menuToggle && mobileMenu) {
-      menuToggle.addEventListener('click', function () {
-        const isOpen = mobileMenu.classList.toggle('is-open');
-        menuToggle.setAttribute('aria-expanded', isOpen);
-        menuToggle.querySelector('.bar:nth-child(1)').style.transform = isOpen ? 'rotate(45deg) translate(5px, 5px)' : '';
-        menuToggle.querySelector('.bar:nth-child(2)').style.opacity = isOpen ? '0' : '1';
-        menuToggle.querySelector('.bar:nth-child(3)').style.transform = isOpen ? 'rotate(-45deg) translate(5px, -5px)' : '';
-      });
-    }
-
-    // Sticky header shadow on scroll
-    const header = document.querySelector('.site-header');
-    if (header) {
-      window.addEventListener('scroll', () => {
-        header.classList.toggle('is-scrolled', window.scrollY > 20);
-      });
-    }
-  </script>
+  {{!-- Theme-specific scripts --}}
+  <script src="{{asset "js/main.js"}}"></script>
 </body>
 </html>
 

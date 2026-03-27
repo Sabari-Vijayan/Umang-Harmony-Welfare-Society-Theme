@@ -1,0 +1,84 @@
+{{!< default}}
+
+{{#contentFor "styles"}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/contact-page.css"}}" />
+{{/contentFor}}
+
+{{#post}}
+
+<header class="contact-header {{#if feature_image}}has-image{{/if}}" 
+     {{#if feature_image}}style="background-image: url('{{feature_image}}');"{{/if}}>
+    <div class="container">
+        <h1 class="contact-title">{{title}}</h1>
+        {{#if custom_excerpt}}
+            <p class="contact-lead">{{custom_excerpt}}</p>
+        {{/if}}
+    </div>
+</header>
+
+<div class="contact-page-content section-padding">
+    <div class="container container--narrow">
+        
+        {{!-- 1. Intro Text from Ghost Editor --}}
+        <div class="contact-intro gh-content">
+            {{{content}}}
+        </div>
+
+        {{!-- 2. Primary Contact (Founder/Person) --}}
+        {{#if @custom.contact_person_name}}
+        <div class="contact-person-section">
+            {{#if @custom.contact_person_image}}
+            <div class="person-photo">
+                <img src="{{@custom.contact_person_image}}" alt="{{@custom.contact_person_name}}">
+            </div>
+            {{/if}}
+            <div class="person-info">
+                <span class="label">Contact Person</span>
+                <h2 class="name">{{@custom.contact_person_name}}</h2>
+                <div class="methods">
+                    {{#if @custom.contact_phone}}
+                        <a href="tel:{{@custom.contact_phone}}" class="method">📞 {{@custom.contact_phone}}</a>
+                    {{/if}}
+                    {{#if @custom.contact_whatsapp}}
+                        <a href="https://wa.me/{{@custom.contact_whatsapp}}" class="method whatsapp">💬 WhatsApp Chat</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        <hr class="contact-divider">
+
+        {{!-- 3. Office & Socials --}}
+        <div class="contact-details-grid">
+            {{#if @custom.contact_address_line1}}
+            <div class="detail-group">
+                <h3>Our Office</h3>
+                <p class="address">
+                    <span>{{@custom.contact_address_line1}}</span>
+                    {{#if @custom.contact_address_line2}}<span>{{@custom.contact_address_line2}}</span>{{/if}}
+                    {{#if @custom.contact_address_line3}}<span>{{@custom.contact_address_line3}}</span>{{/if}}
+                </p>
+            </div>
+            {{/if}}
+
+            {{#if @custom.contact_email}}
+            <div class="detail-group">
+                <h3>Email</h3>
+                <a href="mailto:{{@custom.contact_email}}" class="email-link">{{@custom.contact_email}}</a>
+            </div>
+            {{/if}}
+
+            <div class="detail-group">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    {{#if @site.facebook}}<a href="{{facebook_url @site.facebook}}" target="_blank" rel="noopener">Facebook</a>{{/if}}
+                    {{#if @site.twitter}}<a href="{{twitter_url @site.twitter}}" target="_blank" rel="noopener">Twitter / X</a>{{/if}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{/post}}

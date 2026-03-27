@@ -22,7 +22,7 @@
       </div>
       <div class="footer-cta-actions">
         <a href="{{@site.url}}/partner-with-us/" class="btn btn-outline-white">Partner With Us</a>
-        <a href="{{@site.url}}/contact/" class="btn btn-white">Get In Touch</a>
+        <a href="{{@site.url}}/contact-us/" class="btn btn-white">Get In Touch</a>
       </div>
     </div>
   </div>
@@ -67,7 +67,19 @@
       {{!-- Column 3: Our Work --}}
       <div class="footer-col">
         <h3 class="footer-heading">Our Programmes</h3>
-        {{navigation type="secondary"}}
+        <ul class="footer-links" role="menu">
+          {{#get "posts" filter="tag:hash-flagship-programme" limit="5" order="published_at desc"}}
+            {{#foreach posts}}
+              <li role="menuitem">
+                <a href="{{url}}">{{title}}</a>
+              </li>
+            {{/foreach}}
+          {{else}}
+            <li role="menuitem">
+              <a href="{{@site.url}}/our-programmes/">View All Programmes</a>
+            </li>
+          {{/get}}
+        </ul>
       </div>
 
       {{!-- Column 4: Contact --}}

@@ -1,0 +1,76 @@
+{{!< default}}
+
+{{#contentFor "styles"}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/partner-page.css"}}" />
+{{/contentFor}}
+
+{{#post}}
+<article class="partner-page {{post_class}}">
+
+    {{!-- 1. Hero Section --}}
+    <header class="partner-hero {{#if feature_image}}has-image{{/if}}" 
+            {{#if feature_image}}style="background-image: url('{{feature_image}}');"{{/if}}>
+        <div class="container">
+            <div class="partner-hero-content">
+                <span class="partner-eyebrow">Collaborate with Umang</span>
+                <h1 class="partner-title">{{title}}</h1>
+                {{#if custom_excerpt}}
+                    <p class="partner-lead">{{custom_excerpt}}</p>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+
+    {{!-- 2. Introductory Content --}}
+    <section class="partner-intro section-padding">
+        <div class="container container--narrow">
+            <div class="gh-content">
+                {{{content}}}
+            </div>
+        </div>
+    </section>
+
+    {{!-- 3. Partnership Sections --}}
+    <section class="partner-options-section section-padding section-bg-light">
+        <div class="container">
+            <div class="partner-grid">
+                
+                {{!-- Corporate/CSR --}}
+                <div class="partner-card">
+                    <div class="card-icon">🏢</div>
+                    <h3>Corporate & CSR</h3>
+                    <p>Partner with us to scale women-led livelihood programs. Your CSR contributions can provide training kits, raw materials, and infrastructure for our clusters.</p>
+                    <a href="{{@custom.partner_csr_url}}" class="btn btn-primary" target="_blank" rel="noopener">Partner with us</a>
+                </div>
+
+                {{!-- Volunteering --}}
+                <div class="partner-card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Volunteer</h3>
+                    <p>Share your skills in financial literacy, marketing, or design. Whether remotely or on-field in Satna, your time can transform lives.</p>
+                    <a href="{{@custom.partner_volunteer_url}}" class="btn btn-primary" target="_blank" rel="noopener">Apply to Volunteer</a>
+                </div>
+
+                {{!-- Donations --}}
+                <div class="partner-card card-highlight">
+                    <div class="card-icon">💝</div>
+                    <h3>Direct Support</h3>
+                    <p>Every contribution helps a rural woman earn her first paycheck. Support our mission through one-time or recurring financial contributions.</p>
+                    <a href="{{@custom.partner_donate_url}}" class="btn btn-accent" target="_blank" rel="noopener">Donate Now</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {{!-- 4. Final CTA / Support Text --}}
+    <section class="partner-footer section-padding">
+        <div class="container container--narrow text-center">
+            <h2 class="section-title">Not sure where to start?</h2>
+            <p class="section-subtitle">Reach out to us directly and we can discuss how you can best support our mission in Madhya Pradesh.</p>
+            <a href="{{@site.url}}/contact/" class="btn btn-outline">Contact Our Team</a>
+        </div>
+    </section>
+
+</article>
+{{/post}}

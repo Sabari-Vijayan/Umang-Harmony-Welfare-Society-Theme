@@ -1,0 +1,140 @@
+/*
+ * impact-page.css — Umang Welfare Foundation Ghost Theme
+ * =====================================================
+ */
+
+/* 1. Impact Hero */
+.impact-hero {
+  height: 60vh;
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.impact-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 60, 30, 0.65); /* Dark green overlay for readability */
+}
+
+.impact-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.impact-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+  color: var(--color-accent); /* Saffron orange for title */
+  line-height: 1.1;
+}
+
+.impact-lead {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin-inline: auto;
+  opacity: 0.95;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 2. Main Body Content (Ghost Editor) */
+.impact-body .gh-content {
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+/* 3. Impact Story Cards (Used inside the editor) */
+.story-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-lg);
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: transform var(--transition);
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.story-card:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.story-card-image {
+  flex: 0 0 40%; /* Image takes 40% of the card */
+  height: 380px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.story-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.story-card:hover .story-card-image img {
+  transform: scale(1.05);
+}
+
+.story-card-content {
+  flex: 1;
+  padding-right: var(--space-md);
+}
+
+.story-card:nth-child(even) .story-card-content {
+    padding-right: 0;
+    padding-left: var(--space-md);
+}
+
+.story-card-content h3 {
+  font-size: 1.75rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+  font-weight: 800;
+}
+
+.story-card-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin: 0;
+  text-align: justify;
+}
+
+/* Mobile adjustments for story cards */
+@media (max-width: 900px) {
+    .story-card, .story-card:nth-child(even) {
+        flex-direction: column;
+        gap: var(--space-lg);
+        padding: var(--space-lg);
+    }
+    
+    .story-card-image {
+        width: 100%;
+        height: 300px;
+        min-width: 100%;
+    }
+    
+    .story-card-content p {
+        text-align: left;
+    }
+}

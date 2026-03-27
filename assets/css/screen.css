@@ -172,6 +172,10 @@ ul, ol { list-style: none; }
   margin-inline: auto;
 }
 
+.what-we-do {
+  color: orange;
+}
+
 .section-footer-link {
   text-align: center;
   margin-top: var(--space-2xl);
@@ -259,6 +263,20 @@ p:last-child { margin-bottom: 0; }
 .btn-white:hover {
   background-color: var(--color-primary-light);
   text-decoration: none;
+}
+
+.btn-accent {
+  background-color: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+.btn-accent:hover {
+  background-color: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 /* ============================================================
@@ -381,6 +399,12 @@ p:last-child { margin-bottom: 0; }
   text-decoration: none;
 }
 
+/* Highlight current route */
+.nav-list .nav-current .nav-link {
+  color: var(--color-accent) !important;
+  font-weight: 700;
+}
+
 /* Dropdown */
 .has-dropdown .dropdown-menu {
   display: none;
@@ -487,6 +511,12 @@ p:last-child { margin-bottom: 0; }
 .mobile-nav-list li a:hover,
 .mobile-menu .nav-list li a:hover { color: var(--color-primary); text-decoration: none; }
 
+/* Highlight current route in mobile */
+.mobile-menu .nav-list .nav-current a {
+  color: var(--color-accent) !important;
+  font-weight: 700;
+}
+
 .mobile-donate-btn {
   display: inline-flex !important;
   margin-top: var(--space-lg);
@@ -501,7 +531,7 @@ p:last-child { margin-bottom: 0; }
    ============================================================ */
 .hero {
   position: relative;
-  height: clamp(480px, 70vh, 680px);
+  height: clamp(500px, 68vh, 750px); /* Reduced from 80vh to 68vh */
   overflow: hidden;
 }
 
@@ -523,21 +553,22 @@ p:last-child { margin-bottom: 0; }
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(10, 60, 30, 0.78) 0%,
-    rgba(10, 60, 30, 0.45) 60%,
-    transparent 100%
+    rgba(10, 60, 30, 0.82) 0%,
+    rgba(10, 60, 30, 0.55) 50%,
+    rgba(10, 60, 30, 0.2) 100%
   );
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 620px;
+  max-width: 660px; /* Decreased from 620px */
   color: #fff;
+  padding-block: var(--space-2xl);
 }
 
 .hero-logo {
-  max-width: 350px;
+  max-width: 250px;
   height: auto;
   margin-bottom: var(--space-xl);
 }
@@ -558,19 +589,20 @@ p:last-child { margin-bottom: 0; }
 }
 
 .hero-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.25rem, 6vw, 2.5rem); /* Slightly larger */
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.1; /* Tighter line height */
   color: #fff;
   margin-bottom: var(--space-lg);
-  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  color: rgba(255,255,255,0.88);
-  margin-bottom: var(--space-xl);
-  line-height: 1.65;
+  font-size: clamp(1rem, 1.8vw, 1.35rem); /* Larger font size */
+  color: rgba(255,255,255,0.92);
+  margin-bottom: var(--space-2xl);
+  line-height: 1.6;
+  max-width: 680px; /* Constrain width for better readability */
 }
 
 .hero-actions {
@@ -639,9 +671,17 @@ p:last-child { margin-bottom: 0; }
 .about-strip-text .btn { margin-top: var(--space-sm); }
 
 .about-strip-visual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-strip-visual img {
+  max-width: 85%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .about-card {
@@ -786,10 +826,47 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
   justify-content: center;
   background: var(--color-primary-light);
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  justify-self: center;
+  border-radius: var(--radius-lg); /* Changed from circle to rounded square */
+  width: 100%; /* Take full width of its grid column */
+  aspect-ratio: 1 / 1; /* Keep it square */
+  max-width: 320px; /* Increased from 200px */
+  justify-self: start; /* Align to the left of the column */
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition);
+}
+
+.mission-visual:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.mission-highlight-green {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.mission-highlight-green .section-title,
+.mission-highlight-green .section-eyebrow,
+.mission-highlight-green .mission-text p {
+  color: #fff;
+}
+
+.mission-highlight-green .btn-primary {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: #fff;
+}
+
+.mission-highlight-green .btn-primary:hover {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.mission-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .mission-plant-icon {
@@ -799,7 +876,83 @@ p:last-child { margin-bottom: 0; }
 .mission-text p { color: var(--color-text-muted); margin-bottom: var(--space-lg); }
 
 /* ============================================================
-   13. SPONSORS
+   13. IMPACT STORY STRIP
+   ============================================================ */
+.impact-story {
+  position: relative;
+  overflow: hidden;
+  background-size: 55%; /* Slightly larger */
+  background-position: right 50%; /* Moved all the way to the top */
+  background-repeat: no-repeat;
+}
+
+/* Refined overlay: solid on the left for text, transparent on the right */
+.impact-story.has-bg-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--color-bg-light) 40%,
+    rgba(249, 250, 251, 0.6) 65%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.impact-story .container {
+  position: relative;
+  z-index: 2;
+}
+
+.impact-story .section-header {
+  text-align: left;
+  margin-bottom: var(--space-xl);
+}
+
+.impact-story-content {
+  max-width: 580px; /* Constrained to the left */
+  margin-left: 0;
+  text-align: left;
+}
+
+.impact-story-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+  text-align: justify; /* Justify text */
+}
+
+.impact-story-content .btn {
+  margin-top: var(--space-sm);
+}
+
+@media (max-width: 900px) {
+  .impact-story {
+    background-size: 80%; /* Larger to be seen behind centered content */
+    background-position: center bottom;
+  }
+  .impact-story.has-bg-image::before {
+    background: linear-gradient(
+      to bottom,
+      var(--color-bg-light) 50%,
+      rgba(249, 250, 251, 0.8) 80%,
+      rgba(249, 250, 251, 0.5) 100%
+    );
+  }
+  .impact-story .section-header,
+  .impact-story-content {
+    text-align: center;
+    margin-inline: auto;
+  }
+  .impact-story-content p {
+    text-align: center; /* Better than justify on small screens */
+  }
+}
+
+/* ============================================================
+   14. SPONSORS
    ============================================================ */
 .sponsors-grid {
   display: flex;
@@ -1217,6 +1370,27 @@ p:last-child { margin-bottom: 0; }
   margin-bottom: var(--space-lg);
 }
 
+/* Vertical Footer Links */
+.footer-col .nav-list,
+.footer-col .footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: 0;
+}
+
+.footer-col .nav-link {
+  padding: 0;
+  background: none;
+  color: rgba(255,255,255,0.65);
+}
+
+.footer-col .nav-link:hover {
+  color: #fff;
+  background: none;
+}
+
 .footer-links li { margin-bottom: var(--space-sm); }
 .footer-links a { font-size: 0.9rem; color: rgba(255,255,255,0.65); }
 .footer-links a:hover { color: #fff; text-decoration: none; }
@@ -1322,111 +1496,6 @@ p:last-child { margin-bottom: 0; }
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
   border-radius: 2px;
-}
-
-/* ============================================================
-   19. CUSTOM IMPACT PAGE
-   ============================================================ */
-.impact-hero {
-  height: 40vh;
-  min-height: 300px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  align-items: center;
-  color: #fff;
-  text-align: center;
-}
-.impact-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 60, 30, 0.6);
-}
-.impact-hero .container { position: relative; z-index: 1; }
-
-.impact-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 800;
-  margin-bottom: var(--space-md);
-}
-
-.impact-lead {
-  font-size: 1.25rem;
-  max-width: 800px;
-  margin-inline: auto;
-  opacity: 0.9;
-}
-
-/* ============================================================
-   21. IMPACT STORY CARDS (For the Editor)
-   ============================================================ */
-.story-card {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3xl);
-  margin-bottom: var(--space-3xl);
-  padding: var(--space-xl);
-  background: #fff;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border);
-  overflow: hidden;
-}
-
-.story-card:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.story-card-image {
-  flex: 1;
-  min-width: 300px;
-  height: 350px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
-.story-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition-slow);
-}
-
-.story-card:hover .story-card-image img {
-  transform: scale(1.05);
-}
-
-.story-card-content {
-  flex: 1.2;
-}
-
-.story-card-content h3 {
-  font-size: 1.5rem;
-  color: var(--color-primary);
-  margin-bottom: var(--space-sm);
-  font-weight: 700;
-}
-
-.story-card-content p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--color-text-muted);
-  margin: 0;
-}
-
-/* Mobile adjustments for story cards */
-@media (max-width: 768px) {
-  .story-card, .story-card:nth-child(even) {
-    flex-direction: column;
-    gap: var(--space-lg);
-    padding: var(--space-lg);
-  }
-  .story-card-image {
-    width: 100%;
-    height: 250px;
-  }
 }
 
 /* ============================================================

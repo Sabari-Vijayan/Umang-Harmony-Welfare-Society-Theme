@@ -1,0 +1,87 @@
+{{!< default}}
+
+{{#contentFor "styles"}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/about-page.css"}}" />
+{{/contentFor}}
+
+{{#post}}
+<article class="about-page {{post_class}}">
+
+    {{!-- 1. Narrative Hero --}}
+    <header class="about-hero {{#if feature_image}}has-image{{/if}}" 
+            {{#if feature_image}}style="background-image: url('{{feature_image}}');"{{/if}}>
+        <div class="container">
+            <div class="about-hero-content">
+                <span class="about-eyebrow">Our Journey</span>
+                <h1 class="about-title">{{title}}</h1>
+                {{#if custom_excerpt}}
+                    <p class="about-lead">{{custom_excerpt}}</p>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+
+    {{!-- 2. Main Narrative Content --}}
+    <section class="about-body section-padding">
+        <div class="container">
+            <div class="about-content-grid">
+                
+                {{!-- The "gh-content" class ensures standard Ghost editor styles apply, 
+                      but we will add specific "about-page" overrides in the CSS --}}
+                <div class="gh-content about-main-text">
+                    {{{content}}}
+                </div>
+
+                {{!-- A side "quick-facts" or "impact-box" can be added here if needed, 
+                      but for now, we'll keep it clean and focused on the story --}}
+            </div>
+        </div>
+    </section>
+
+    {{!-- 3. Values / Highlight Section (Placeholder for Visual Impact) --}}
+    {{!-- This section uses a subtle background to break up the long text --}}
+    <section class="about-highlights section-padding section-bg-light">
+        <div class="container">
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <div class="highlight-image-top {{#if @custom.about_highlight_image_1}}has-image{{/if}}"
+                         {{#if @custom.about_highlight_image_1}}style="background-image: url('{{@custom.about_highlight_image_1}}');"{{/if}}>
+                        {{#unless @custom.about_highlight_image_1}}
+                            <span class="highlight-icon">🤝</span>
+                        {{/unless}}
+                    </div>
+                    <div class="highlight-item-body">
+                        <h3>Community First</h3>
+                        <p>Designed by and for the women of Satna.</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-image-top {{#if @custom.about_highlight_image_2}}has-image{{/if}}"
+                         {{#if @custom.about_highlight_image_2}}style="background-image: url('{{@custom.about_highlight_image_2}}');"{{/if}}>
+                        {{#unless @custom.about_highlight_image_2}}
+                            <span class="highlight-icon">📈</span>
+                        {{/unless}}
+                    </div>
+                    <div class="highlight-item-body">
+                        <h3>Sustainable Growth</h3>
+                        <p>Focusing on long-term economic independence.</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-image-top {{#if @custom.about_highlight_image_3}}has-image{{/if}}"
+                         {{#if @custom.about_highlight_image_3}}style="background-image: url('{{@custom.about_highlight_image_3}}');"{{/if}}>
+                        {{#unless @custom.about_highlight_image_3}}
+                            <span class="highlight-icon">⚖️</span>
+                        {{/unless}}
+                    </div>
+                    <div class="highlight-item-body">
+                        <h3>Financial Agency</h3>
+                        <p>Beyond earning—mastering financial decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</article>
+{{/post}}

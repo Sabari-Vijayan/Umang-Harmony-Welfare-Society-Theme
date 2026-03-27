@@ -1,0 +1,196 @@
+/*
+ * about-page.css — Umang Welfare Foundation Ghost Theme
+ * =====================================================
+ * Specifically for custom-about.hbs
+ */
+
+/* 1. About Hero Section */
+.about-hero {
+    background-color: var(--color-primary-dark);
+    color: #fff;
+    padding-block: var(--space-3xl);
+    text-align: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: var(--space-2xl);
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.about-hero.has-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 60, 30, 0.65); /* Dark green overlay */
+}
+
+.about-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.about-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-md);
+}
+
+.about-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    margin-bottom: var(--space-md);
+    color: #fff;
+    line-height: 1.1;
+}
+
+.about-lead {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin-inline: auto;
+    opacity: 0.95;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+}
+
+/* 2. Main Narrative Styling (Ghost Editor Overrides) */
+.about-main-text {
+    max-width: 800px;
+    margin-inline: auto;
+}
+
+/* Beautiful Heading Styles for the Story */
+.about-main-text h2 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: var(--color-primary);
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    border-bottom: 2px solid var(--color-primary-light);
+    display: inline-block;
+    padding-bottom: 0.2em;
+}
+
+.about-main-text h3 {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-top: 1.5em;
+    font-weight: 700;
+}
+
+/* Justified text for narrative feel */
+.about-main-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    margin-bottom: 1.6em;
+    text-align: justify;
+}
+
+/* Image styles within the about story */
+.about-main-text figure {
+    margin-block: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition);
+}
+
+.about-main-text figure:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.about-main-text img {
+    border-radius: var(--radius-md);
+}
+
+/* Blockquote for highlighting mission/quotes */
+.about-main-text blockquote {
+    background: var(--color-primary-light);
+    border-left: 5px solid var(--color-primary);
+    padding: var(--space-xl);
+    font-size: 1.25rem;
+    color: var(--color-primary-dark);
+    font-style: italic;
+    margin-block: var(--space-2xl);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* 3. Values Section Grid */
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-2xl);
+    text-align: center;
+}
+
+.highlight-item {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition);
+    overflow: hidden; /* Important for rounded corners with top image */
+    display: flex;
+    flex-direction: column;
+}
+
+.highlight-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+
+.highlight-image-top {
+    height: 180px;
+    background-color: var(--color-primary-light);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.highlight-image-top.has-image {
+    background-color: transparent;
+}
+
+.highlight-icon {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.highlight-item-body {
+    padding: var(--space-xl);
+    text-align: center;
+}
+
+.highlight-item-body h3 {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.highlight-item-body p {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .about-main-text p {
+        text-align: left; /* Better for narrow mobile screens */
+    }
+    
+    .about-hero {
+        padding-block: var(--space-2xl);
+        min-height: 300px;
+    }
+}
