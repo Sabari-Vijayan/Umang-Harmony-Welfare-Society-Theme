@@ -1,9 +1,5 @@
 {{!< default}}
 
-{{#contentFor "styles"}}
-    <link rel="stylesheet" type="text/css" href="{{asset "css/contact-page.css"}}" />
-{{/contentFor}}
-
 {{#post}}
 
 <header class="contact-header {{#if feature_image}}has-image{{/if}}" 
@@ -30,7 +26,7 @@
                 <div class="contact-person-section">
                     {{#if feature_image}}
                     <div class="person-photo">
-                        <img src="{{feature_image}}" alt="{{title}}">
+                        <img src="{{img_url feature_image size="s"}}" alt="{{title}}">
                     </div>
                     {{/if}}
                     <div class="person-info">
@@ -53,13 +49,11 @@
 
         {{!-- 3. Office & Socials --}}
         <div class="contact-details-grid">
-            {{#if @custom.contact_address_line1}}
+            {{#if @custom.contact_address}}
             <div class="detail-group">
-                <h3>{{@custom.contact_office_label}}</h3>
+                <h3>Our Office</h3>
                 <p class="address">
-                    <span>{{@custom.contact_address_line1}}</span>
-                    {{#if @custom.contact_address_line2}}<span>{{@custom.contact_address_line2}}</span>{{/if}}
-                    {{#if @custom.contact_address_line3}}<span>{{@custom.contact_address_line3}}</span>{{/if}}
+                    <span>{{@custom.contact_address}}</span>
                 </p>
             </div>
             {{/if}}

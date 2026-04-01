@@ -1,9 +1,5 @@
 {{!< default}}
 
-{{#contentFor "styles"}}
-    <link rel="stylesheet" type="text/css" href="{{asset "css/works-page.css"}}" />
-{{/contentFor}}
-
 {{#post}}
 
 <header class="works-header {{#if feature_image}}has-image{{/if}}" 
@@ -20,11 +16,16 @@
                     Search Initiatives...
                 </button>
             </div>
+            
+            {{!-- Scroll indicator --}}
+            <a href="#works-content" class="scroll-down" aria-label="Scroll down to content">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+            </a>
         </div>
     </div>
 </header>
 
-<div class="works-page-content section-padding">
+<div id="works-content" class="works-page-content section-padding">
     <div class="container container--narrow">
         
         {{!-- 1. Page Content from Ghost Editor --}}

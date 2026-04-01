@@ -14,14 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', function () {
       const isOpen = mobileMenu.classList.toggle('is-open');
       menuToggle.setAttribute('aria-expanded', isOpen);
-      
-      // Animate the hamburger bars
-      const bars = menuToggle.querySelectorAll('.bar');
-      if (bars.length === 3) {
-        bars[0].style.transform = isOpen ? 'rotate(45deg) translate(5px, 5px)' : '';
-        bars[1].style.opacity = isOpen ? '0' : '1';
-        bars[2].style.transform = isOpen ? 'rotate(-45deg) translate(5px, -5px)' : '';
-      }
+      menuToggle.classList.toggle('is-active', isOpen);
     });
   }
 

@@ -13,20 +13,9 @@
     "email": "vijayansabari06@gmail.com"
   },
   "config": {
-    "posts_per_page": 10,
-    "cards_assets": true,
-    "templates": {
-      "custom-contact": {
-        "name": "Contact Page",
-        "for": ["page"]
-      },
-      "custom-impact": {
-        "name": "Impact Page",
-        "for": ["page"]
-      }
-    },
-    "custom": {
-      "linkedin_url": {
+  "posts_per_page": 10,
+  "cards_assets": true,
+  "custom": {      "linkedin_url": {
         "type": "text",
         "default": "https://www.linkedin.com/company/umangharmony/posts/?feedView=all"
       },
@@ -75,17 +64,9 @@
       "impact_story_image": {
         "type": "image"
       },
-      "about_highlight_1_description": {
+      "contact_address": {
         "type": "text",
-        "default": "Designed by and for the women of Satna."
-      },
-      "about_highlight_2_description": {
-        "type": "text",
-        "default": "Focusing on long-term economic independence."
-      },
-      "about_highlight_3_description": {
-        "type": "text",
-        "default": "Beyond earning—mastering financial decisions."
+        "default": "Satna, Madhya Pradesh, India"
       },
       "contact_email": {
         "type": "text",
@@ -98,6 +79,10 @@
       "contact_whatsapp": {
         "type": "text",
         "default": "910000000000"
+      },
+      "footer_tagline": {
+        "type": "text",
+        "default": "Empowering Rural Women, One Step at a Time"
       },
       "footer_registration": {
         "type": "text",

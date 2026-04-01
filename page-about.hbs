@@ -1,9 +1,5 @@
 {{!< default}}
 
-{{#contentFor "styles"}}
-    <link rel="stylesheet" type="text/css" href="{{asset "css/about-page.css"}}" />
-{{/contentFor}}
-
 {{#post}}
 <article class="about-page {{post_class}}">
 
@@ -64,42 +60,6 @@
 
                 {{!-- A side "quick-facts" or "impact-box" can be added here if needed, 
                       but for now, we'll keep it clean and focused on the story --}}
-            </div>
-        </div>
-    </section>
-
-    {{!-- 4. Values / Highlight Section (Placeholder for Visual Impact) --}}
-    {{!-- This section uses a subtle background to break up the long text --}}
-    <section class="about-highlights section-padding section-bg-light">
-        <div class="container">
-            <div class="highlights-grid">
-                <div class="highlight-item">
-                    <div class="highlight-image-top">
-                        <span class="highlight-icon">🤝</span>
-                    </div>
-                    <div class="highlight-item-body">
-                        <h3>Community First</h3>
-                        <p>{{@custom.about_highlight_1_description}}</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-image-top">
-                        <span class="highlight-icon">📈</span>
-                    </div>
-                    <div class="highlight-item-body">
-                        <h3>Sustainable Growth</h3>
-                        <p>{{@custom.about_highlight_2_description}}</p>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-image-top">
-                        <span class="highlight-icon">⚖️</span>
-                    </div>
-                    <div class="highlight-item-body">
-                        <h3>Financial Agency</h3>
-                        <p>{{@custom.about_highlight_3_description}}</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
