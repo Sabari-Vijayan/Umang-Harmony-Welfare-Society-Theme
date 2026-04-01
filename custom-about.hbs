@@ -21,7 +21,37 @@
         </div>
     </header>
 
-    {{!-- 2. Main Narrative Content --}}
+    {{!-- 2. Leadership Section --}}
+    <section class="about-leadership section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Our Leadership</h2>
+                <p class="section-subtitle">The vision and passion behind Umang Harmony.</p>
+            </div>
+            <div class="founders-grid">
+                {{#get "posts" filter="tag:hash-founder" limit="2" include="tags,authors" order="published_at asc"}}
+                    {{#foreach posts}}
+                        <div class="founder-card">
+                            <div class="founder-image {{#if feature_image}}has-image{{/if}}"
+                                 {{#if feature_image}}style="background-image: url('{{feature_image}}');"{{/if}}>
+                            </div>
+                            <div class="founder-info">
+                                <h3 class="founder-name">{{title}}</h3>
+                                {{#if custom_excerpt}}
+                                    <p class="founder-role">{{custom_excerpt}}</p>
+                                {{/if}}
+                                <div class="founder-bio">
+                                    {{content}}
+                                </div>
+                            </div>
+                        </div>
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </div>
+    </section>
+
+    {{!-- 3. Main Narrative Content --}}
     <section class="about-body section-padding">
         <div class="container">
             <div class="about-content-grid">
@@ -38,45 +68,36 @@
         </div>
     </section>
 
-    {{!-- 3. Values / Highlight Section (Placeholder for Visual Impact) --}}
+    {{!-- 4. Values / Highlight Section (Placeholder for Visual Impact) --}}
     {{!-- This section uses a subtle background to break up the long text --}}
     <section class="about-highlights section-padding section-bg-light">
         <div class="container">
             <div class="highlights-grid">
                 <div class="highlight-item">
-                    <div class="highlight-image-top {{#if @custom.about_highlight_image_1}}has-image{{/if}}"
-                         {{#if @custom.about_highlight_image_1}}style="background-image: url('{{@custom.about_highlight_image_1}}');"{{/if}}>
-                        {{#unless @custom.about_highlight_image_1}}
-                            <span class="highlight-icon">🤝</span>
-                        {{/unless}}
+                    <div class="highlight-image-top">
+                        <span class="highlight-icon">🤝</span>
                     </div>
                     <div class="highlight-item-body">
                         <h3>Community First</h3>
-                        <p>Designed by and for the women of Satna.</p>
+                        <p>{{@custom.about_highlight_1_description}}</p>
                     </div>
                 </div>
                 <div class="highlight-item">
-                    <div class="highlight-image-top {{#if @custom.about_highlight_image_2}}has-image{{/if}}"
-                         {{#if @custom.about_highlight_image_2}}style="background-image: url('{{@custom.about_highlight_image_2}}');"{{/if}}>
-                        {{#unless @custom.about_highlight_image_2}}
-                            <span class="highlight-icon">📈</span>
-                        {{/unless}}
+                    <div class="highlight-image-top">
+                        <span class="highlight-icon">📈</span>
                     </div>
                     <div class="highlight-item-body">
                         <h3>Sustainable Growth</h3>
-                        <p>Focusing on long-term economic independence.</p>
+                        <p>{{@custom.about_highlight_2_description}}</p>
                     </div>
                 </div>
                 <div class="highlight-item">
-                    <div class="highlight-image-top {{#if @custom.about_highlight_image_3}}has-image{{/if}}"
-                         {{#if @custom.about_highlight_image_3}}style="background-image: url('{{@custom.about_highlight_image_3}}');"{{/if}}>
-                        {{#unless @custom.about_highlight_image_3}}
-                            <span class="highlight-icon">⚖️</span>
-                        {{/unless}}
+                    <div class="highlight-image-top">
+                        <span class="highlight-icon">⚖️</span>
                     </div>
                     <div class="highlight-item-body">
                         <h3>Financial Agency</h3>
-                        <p>Beyond earning—mastering financial decisions.</p>
+                        <p>{{@custom.about_highlight_3_description}}</p>
                     </div>
                 </div>
             </div>

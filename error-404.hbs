@@ -1,0 +1,43 @@
+{{!< default}}
+
+<section class="error-page section-padding">
+    <div class="container text-center">
+        <h1 class="error-title">{{@custom.error_title}}</h1>
+        <p class="error-message">{{@custom.error_message}}</p>
+        <div class="error-actions">
+            <a href="{{@site.url}}" class="btn btn-primary">Back to Homepage</a>
+            <a href="{{@site.url}}/contact-us/" class="btn btn-outline">Contact Support</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.error-page {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.error-title {
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+}
+.error-message {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin-inline: auto;
+    margin-bottom: var(--space-2xl);
+    color: var(--color-text-muted);
+}
+.error-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+}
+@media (max-width: 600px) {
+    .error-actions {
+        flex-direction: column;
+    }
+}
+</style>

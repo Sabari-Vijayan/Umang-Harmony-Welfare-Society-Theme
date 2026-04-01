@@ -69,12 +69,12 @@
   <div class="container about-strip-inner">
     <div class="about-strip-text">
       <span class="section-eyebrow">Who We Are</span>
-      <h2 class="section-title">{{@custom.about_section_title}}</h2>
+      <h2 class="section-title">A Livelihood-Focused Organisation</h2>
       <p>{{@custom.about_section_description}}</p>
       <a href="{{@site.url}}/about/" class="btn btn-primary">Read More</a>
     </div>
     <div class="about-strip-visual">
-      <img src="{{@custom.madhya_pradesh_image}}" alt="{{@custom.madhya_pradesh_section_title}}" class="mission-image">
+      <img src="{{@custom.madhya_pradesh_image}}" alt="Madhya Pradesh" class="mission-image">
     </div>
   </div>
 </section>
@@ -84,7 +84,7 @@
   <div class="container">
     <div class="section-header">
       <span class="section-eyebrow">What We Do?</span>
-      <h2 class="section-subtitle what-we-do">{{@custom.what_we_do_description}}</h2>
+      <h2 class="section-subtitle what-we-do">Empowering communities through sustainable initiatives.</h2>
     </div>
 
 
@@ -94,7 +94,7 @@
     2. 'filter' looks for the internal tag #case-story (represented as hash-case-story)
     3. 'include' ensures we get the tag data for the labels 
   --}}
-  {{#get "posts" filter="tag:hash-case-story" limit="6" include="tags,authors"}}
+  {{#get "posts" filter="tag:hash-case-story" limit="3" include="tags,authors"}}
     {{#foreach posts}}
       <article class="post-card">
         {{#if feature_image}}
@@ -143,42 +143,61 @@
 
 
     <div class="section-footer-link">
-      <a href="{{@site.url}}/blog/" class="btn btn-outline">View All Updates</a>
+      <a href="{{@site.url}}/our-works/" class="btn btn-outline">View All Updates</a>
     </div>
   </div>
 </section>
 
 {{!-- 5. MISSION HIGHLIGHT --}}
 <section class="mission-highlight section-padding mission-highlight-green">
-  <div class="container mission-inner">
-    <div class="mission-visual" aria-hidden="true">
-      {{#if @custom.flagship_image}}
-        <img src="{{@custom.flagship_image}}" alt="{{@custom.flagship_section_title}}" class="mission-image">
-      {{else}}
-        <div class="mission-plant-icon">💰</div>
-      {{/if}}
-    </div>
-    <div class="mission-text">
-      <span class="section-eyebrow">Our Flagship Programme</span>
-      <h2 class="section-title">{{@custom.flagship_section_title}}</h2>
-      <p>{{@custom.flagship_section_description}}</p>
-      <a href="{{@site.url}}/flagship-programme/" class="btn btn-accent">Read More On Cotton</a>
-    </div>
-  </div>
-</section>
+  {{#get "posts" filter="tag:hash-flagship-programme" limit="1" include="tags,authors"}}
+    {{#foreach posts}}
+      <div class="container mission-inner">
+        <div class="mission-visual" aria-hidden="true">
+          {{#if feature_image}}
+            <img src="{{feature_image}}" alt="{{title}}" class="mission-image">
+          {{else}}
+            <div class="mission-plant-icon">💰</div>
+          {{/if}}
+        </div>
+        <div class="mission-text">
+          <span class="section-eyebrow">Flagship Programmes</span>
+          <h2 class="section-title">{{title}}</h2>
+          <p>{{excerpt words="40"}}</p>
+          <a href="{{url}}" class="btn btn-accent">Read More</a>
+        </div>
+      </div>
+    {{/foreach}}
+  {{else}}
+    <div class="container mission-inner">
+      <div class="mission-visual" aria-hidden="true">
+        {{#if @custom.flagship_image}}
+          <img src="{{@custom.flagship_image}}" alt="{{@custom.flagship_section_title}}" class="mission-image">
+        {{else}}
+          <div class="mission-plant-icon">💰</div>
+        {{/if}}
+      </div>
+      <div class="mission-text">
+        <span class="section-eyebrow">Flagship Programmes</span>
+        <h2 class="section-title">Cotton Wick Production</h2>
+        <p>{{@custom.flagship_section_description}}</p>
+        <a href="{{@site.url}}/flagship-programme/" class="btn btn-accent">Read More</a>
+      </div>
+      </div>
+      {{/get}}
+      </section>
 
-{{!-- 6. IMPACT STORY STRIP --}}
-<section class="impact-story section-padding section-bg-light {{#if @custom.impact_story_image}}has-bg-image{{/if}}" 
-         aria-label="Impact story"
-         {{#if @custom.impact_story_image}}style="background-image: url('{{@custom.impact_story_image}}');"{{/if}}>
-  <div class="container">
-    <div class="section-header">
-      <span class="section-eyebrow">Impact Story</span>
-      <h2 class="section-title">{{@custom.impact_story_title}}</h2>
-    </div>
-    <div class="impact-story-content">
+      {{!-- 6. IMPACT STORY STRIP --}}
+      <section class="impact-story section-padding section-bg-light {{#if @custom.impact_story_image}}has-bg-image{{/if}}" 
+           aria-label="Impact story"
+           {{#if @custom.impact_story_image}}style="background-image: url('{{@custom.impact_story_image}}');"{{/if}}>
+      <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Impact Story</span>
+        <h2 class="section-title">A Spark That Lit 300 Lives</h2>
+      </div>    <div class="impact-story-content">
       <p>{{@custom.impact_story_content}}</p>
-      <a href="{{@site.url}}/impact/" class="btn btn-outline">See Full Impact</a>
+      <a href="{{@site.url}}/impact-story/" class="btn btn-outline">See Full Impact</a>
     </div>
   </div>
 </section>

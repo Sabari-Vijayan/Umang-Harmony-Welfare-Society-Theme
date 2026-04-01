@@ -9,10 +9,18 @@
 <header class="works-header {{#if feature_image}}has-image{{/if}}" 
      {{#if feature_image}}style="background-image: url('{{feature_image}}');"{{/if}}>
     <div class="container">
-        <h1 class="works-title">{{title}}</h1>
-        {{#if custom_excerpt}}
-            <p class="works-lead">{{custom_excerpt}}</p>
-        {{/if}}
+        <div class="works-header-content">
+            <h1 class="works-title">{{title}}</h1>
+            {{#if custom_excerpt}}
+                <p class="works-lead">{{custom_excerpt}}</p>
+            {{/if}}
+            <div class="works-search">
+                <button class="btn btn-outline-white search-trigger" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    Search Initiatives...
+                </button>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -26,7 +34,7 @@
 
         {{!-- 2. Vertical Works List --}}
         <div class="works-list">
-            {{#get "posts" limit="all" include="tags,authors" order="published_at desc"}}
+            {{#get "posts" filter="tag:-hash-founder+tag:-hash-contact-person" limit="100" include="tags,authors" order="published_at desc"}}
                 {{#foreach posts}}
                     <article class="work-item">
                         

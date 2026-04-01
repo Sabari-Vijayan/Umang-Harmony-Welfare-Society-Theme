@@ -13,12 +13,15 @@
 .works-header {
     background-color: var(--color-primary-dark);
     color: #fff;
-    padding-block: var(--space-3xl);
+    padding-block: var(--space-4xl);
     text-align: center;
     position: relative;
     background-size: cover;
     background-position: center;
     margin-bottom: var(--space-2xl);
+    min-height: 600px;
+    display: flex;
+    align-items: center;
 }
 
 .works-header.has-image::before {
@@ -45,6 +48,19 @@
     opacity: 0.9;
     max-width: 600px;
     margin-inline: auto;
+    margin-bottom: var(--space-xl);
+}
+
+.works-search {
+    display: flex;
+    justify-content: center;
+}
+
+.search-trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    cursor: pointer;
 }
 
 /* 2. Intro Content */

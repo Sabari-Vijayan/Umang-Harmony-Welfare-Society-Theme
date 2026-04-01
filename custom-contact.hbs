@@ -25,27 +25,29 @@
         </div>
 
         {{!-- 2. Primary Contact (Founder/Person) --}}
-        {{#if @custom.contact_person_name}}
-        <div class="contact-person-section">
-            {{#if @custom.contact_person_image}}
-            <div class="person-photo">
-                <img src="{{@custom.contact_person_image}}" alt="{{@custom.contact_person_name}}">
-            </div>
-            {{/if}}
-            <div class="person-info">
-                <span class="label">Contact Person</span>
-                <h2 class="name">{{@custom.contact_person_name}}</h2>
-                <div class="methods">
-                    {{#if @custom.contact_phone}}
-                        <a href="tel:{{@custom.contact_phone}}" class="method">📞 {{@custom.contact_phone}}</a>
+        {{#get "posts" filter="tag:hash-contact-person" limit="1" include="tags,authors"}}
+            {{#foreach posts}}
+                <div class="contact-person-section">
+                    {{#if feature_image}}
+                    <div class="person-photo">
+                        <img src="{{feature_image}}" alt="{{title}}">
+                    </div>
                     {{/if}}
-                    {{#if @custom.contact_whatsapp}}
-                        <a href="https://wa.me/{{@custom.contact_whatsapp}}" class="method whatsapp">💬 WhatsApp Chat</a>
-                    {{/if}}
+                    <div class="person-info">
+                        <span class="label">Contact Person</span>
+                        <h2 class="name">{{title}}</h2>
+                        <div class="methods">
+                            {{#if @custom.contact_phone}}
+                                <a href="tel:{{@custom.contact_phone}}" class="method">📞 {{@custom.contact_phone}}</a>
+                            {{/if}}
+                            {{#if @custom.contact_whatsapp}}
+                                <a href="https://wa.me/{{@custom.contact_whatsapp}}" class="method whatsapp">💬 WhatsApp Chat</a>
+                            {{/if}}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        {{/if}}
+            {{/foreach}}
+        {{/get}}
 
         <hr class="contact-divider">
 
@@ -53,7 +55,7 @@
         <div class="contact-details-grid">
             {{#if @custom.contact_address_line1}}
             <div class="detail-group">
-                <h3>Our Office</h3>
+                <h3>{{@custom.contact_office_label}}</h3>
                 <p class="address">
                     <span>{{@custom.contact_address_line1}}</span>
                     {{#if @custom.contact_address_line2}}<span>{{@custom.contact_address_line2}}</span>{{/if}}
@@ -72,8 +74,7 @@
             <div class="detail-group">
                 <h3>Connect</h3>
                 <div class="social-links">
-                    {{#if @site.facebook}}<a href="{{facebook_url @site.facebook}}" target="_blank" rel="noopener">Facebook</a>{{/if}}
-                    {{#if @site.twitter}}<a href="{{twitter_url @site.twitter}}" target="_blank" rel="noopener">Twitter / X</a>{{/if}}
+                    <a href="{{@custom.linkedin_url}}" target="_blank" rel="noopener">LinkedIn</a>
                 </div>
             </div>
         </div>
