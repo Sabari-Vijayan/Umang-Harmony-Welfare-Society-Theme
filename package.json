@@ -1,7 +1,7 @@
 {
   "name": "umang-harmony-theme",
   "description": "Official theme for Umang Harmony Welfare society",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "keywords": [
     "ghost-theme",
@@ -14,21 +14,11 @@
   },
   "config": {
   "posts_per_page": 10,
-  "cards_assets": true,
   "custom": {      "linkedin_url": {
-        "type": "text",
-        "default": "https://www.linkedin.com/company/umangharmony/posts/?feedView=all"
-      },
-      "hero_title": {
-        "type": "text",
-        "default": "Empowering Rural Women through Sustainable Livelihoods"
-      },
-      "hero_subtitle": {
-        "type": "text",
-        "default": "Working with rural women in Satna, Madhya Pradesh to build home-based livelihood opportunities, strengthen financial literacy, and enable long-term economic independence."
-      },
-      "about_section_description": {
-        "type": "text",
+      "type": "text",
+      "default": "https://www.linkedin.com/company/umangharmony/posts/?feedView=all"
+    },
+    "about_section_description": {        "type": "text",
         "default": "Umang Harmony Welfare Society is a livelihood-focused organisation established in August 2024 in Satna, Madhya Pradesh, registered under the Madhya Pradesh Societies Registration Act, 1973."
       },
       "madhya_pradesh_image": {
@@ -37,9 +27,6 @@
       "flagship_section_description": {
         "type": "text",
         "default": "Our flagship initiative supports 1,000 rural women from SC/ST and OBC communities to produce high-quality cotton wicks for households and temples — earning ₹1,500–₹2,000 per month from home-based work, on their own schedule."
-      },
-      "flagship_image": {
-        "type": "image"
       },
       "women_engaged": {
         "type": "text",
@@ -87,6 +74,14 @@
       "footer_registration": {
         "type": "text",
         "default": "Registered under M.P. Societies Registration Act, 1973. Est. August 2024, Satna, M.P."
+      },
+      "error_title": {
+        "type": "text",
+        "default": "404 - Page Not Found"
+      },
+      "error_message": {
+        "type": "text",
+        "default": "The page you are looking for might have been moved or deleted."
       }
     }
   },

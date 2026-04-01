@@ -668,6 +668,22 @@ p:last-child { margin-bottom: 0; }
 .about-card p { font-size: 0.875rem; color: var(--color-text-muted); margin: 0; }
 
 /* ============================================================
+   10.1 HERO CUSTOM SECTION (ADMIN PAGE CONTENT)
+   ============================================================ */
+.hero-custom {
+  height: clamp(520px, 72vh, 800px); /* Match original hero height */
+}
+
+.hero-custom .hero-subtitle p {
+  margin-bottom: var(--space-md);
+  color: rgba(255,255,255,0.92);
+}
+
+.hero-custom .hero-subtitle p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================
    11. POST CARDS / GRID
    ============================================================ */
 .posts-grid {
@@ -1765,22 +1781,61 @@ p:last-child { margin-bottom: 0; }
 .story-card-content p { font-size: 1.1rem; line-height: 1.8; color: var(--color-text-muted); margin: 0; text-align: justify; }
 
 /* --- PARTNER PAGE --- */
-.partner-hero { background-color: var(--color-primary-dark); color: #fff; padding-block: var(--space-3xl); text-align: center; position: relative; background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center; }
+.partner-hero { background-color: var(--color-primary-dark); color: #fff; padding-top: var(--space-3xl); padding-bottom: 0; text-align: center; position: relative; background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center; }
 .partner-hero.has-image::before { content: ""; position: absolute; inset: 0; background: rgba(10, 60, 30, 0.7); }
-.partner-hero .container { position: relative; z-index: 2; }
+.partner-hero .container { position: relative; z-index: 2; width: 100%; }
 .partner-eyebrow { display: block; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent); margin-bottom: var(--space-md); }
 .partner-title { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; margin-bottom: var(--space-md); color: #fff; }
 .partner-lead { font-size: 1.25rem; max-width: 600px; margin-inline: auto; color: #fff; opacity: 0.9; }
-.partner-intro .gh-content { font-size: 1.125rem; line-height: 1.8; }
+
+.partner-intro.section-padding { padding-top: 0; }
+.partner-intro .gh-content { font-size: 1.125rem; line-height: 1.8; padding-top: var(--space-xl); }
 .partner-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-2xl); }
 .partner-card { background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--color-border); display: flex; flex-direction: column; text-align: center; transition: transform var(--transition); overflow: hidden; }
 .partner-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
 .partner-card.card-highlight { border-top: 5px solid var(--color-accent); }
+
+.partner-card-image {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.partner-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.partner-card:hover .partner-card-image img {
+  transform: scale(1.05);
+}
+
 .partner-card-content { padding: var(--space-2xl); display: flex; flex-direction: column; flex: 1; }
 .partner-card h3 { font-size: 1.5rem; color: var(--color-primary); margin-bottom: var(--space-sm); }
 .partner-card p { color: var(--color-text-muted); line-height: 1.6; margin-bottom: var(--space-xl); flex: 1; }
 .partner-card .btn { align-self: center; }
-.partner-footer .section-subtitle { margin-bottom: var(--space-xl); }
+
+/* Ensure that if Ghost editor adds <p> tags inside the button, they don't break the layout */
+.partner-card .btn p {
+  margin: 0;
+  display: inline;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.partner-footer {
+  text-align: center;
+}
+
+.partner-footer .section-subtitle { 
+  margin-inline: auto;
+  max-width: 600px;
+  margin-bottom: var(--space-xl); 
+}
 
 /* --- WORKS PAGE --- */
 .works-header { background-color: var(--color-primary-dark); color: #fff; padding-block: var(--space-4xl); text-align: center; position: relative; background-size: cover; background-position: center; margin-bottom: var(--space-2xl); height: calc(100vh - var(--header-height)); min-height: 600px; display: flex; align-items: center; }

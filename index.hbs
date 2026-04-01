@@ -4,40 +4,33 @@
   ==========
   Homepage template for Umang Harmony Welfare Society.
   Ghost automatically uses this file for the root URL (/).
-
-  Key Ghost Handlebars helpers used here:
-  {{#foreach posts}}   → loops over the current page's posts
-  {{title}}            → post title
-  {{excerpt}}          → auto-generated excerpt
-  {{feature_image}}    → featured image URL
-  {{url}}              → the post's full URL
-  {{primary_tag}}      → the first tag assigned to the post
-  {{published_at}}     → publish date
-  {{reading_time}}     → estimated reading time
-  {{pagination}}       → renders prev/next page links
 --}}
 
-{{!-- 1. HERO SECTION --}}
-<section class="hero" aria-label="Hero banner">
-  <div class="hero-slides">
-    <div class="hero-slide is-active" style="background-image: url('{{@site.cover_image}}')">
-      <div class="hero-overlay"></div>
-      <div class="container hero-content">
-        {{#if @site.logo}}
-          <span class="hero-tag">{{@site.title}}</span>
-        {{else}}
-          <span class="hero-tag">{{@site.title}}</span>
-        {{/if}}
-        <h1 class="hero-title">{{@custom.hero_title}}</h1>
-        <p class="hero-subtitle">{{@custom.hero_subtitle}}</p>
-        <div class="hero-actions">
-          <a href="{{@site.url}}/about/" class="btn btn-primary btn-lg">Our Story</a>
-          <a href="{{@site.url}}/partner-with-us/" class="btn btn-outline-white btn-lg">Partner With Us</a>
+{{!-- 1. CUSTOM CONTENT FROM ADMIN (Hero Style) --}}
+{{#get "pages" slug="home" limit="1"}}
+  {{#foreach pages}}
+    <section class="hero hero-custom" aria-label="{{title}}">
+      <div class="hero-slides">
+        <div class="hero-slide is-active" {{#if feature_image}}style="background-image: url('{{feature_image}}')"{{/if}}>
+          <div class="hero-overlay"></div>
+          <div class="container hero-content">
+            
+            {{#if excerpt}}
+              <span class="hero-tag">{{excerpt}}</span>
+            {{/if}}
+
+            <h2 class="hero-title">{{title}}</h2>
+            
+            <div class="hero-subtitle">
+              {{content}}
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  {{/foreach}}
+{{/get}}
 
 {{!-- 2. IMPACT STATS BAR --}}
 <section class="stats-bar" aria-label="Impact statistics">
@@ -87,19 +80,12 @@
       <h2 class="section-subtitle what-we-do">Empowering communities through sustainable initiatives.</h2>
     </div>
 
-
 <div class="posts-grid">
-  {{!-- 
-    1. 'get' fetches posts specifically 
-    2. 'filter' looks for the internal tag #case-story (represented as hash-case-story)
-    3. 'include' ensures we get the tag data for the labels 
-  --}}
   {{#get "posts" filter="tag:hash-case-story" limit="3" include="tags,authors"}}
     {{#foreach posts}}
       <article class="post-card">
         {{#if feature_image}}
           <a href="{{url}}" class="post-card-image-link" tabindex="-1" aria-hidden="true">
-            {{!-- Using <img> tag with srcset is better for performance than background-image --}}
             <img class="post-card-image"
               srcset="{{img_url feature_image size="s"}} 300w,
                       {{img_url feature_image size="m"}} 600w"
@@ -117,30 +103,18 @@
           <div class="post-card-meta">
             <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
           </div>
-          
-          <h3 class="post-card-title">
-            <a href="{{url}}">{{title}}</a>
-          </h3>
-          
-          {{!-- Use custom_excerpt if available, otherwise fallback to auto-generated excerpt --}}
+          <h3 class="post-card-title"><a href="{{url}}">{{title}}</a></h3>
           <p class="post-card-excerpt">
-            {{#if custom_excerpt}}
-              {{custom_excerpt}}
-            {{else}}
-              {{excerpt words="20"}}
-            {{/if}}
+            {{#if custom_excerpt}}{{custom_excerpt}}{{else}}{{excerpt words="20"}}{{/if}}
           </p>
-          
           <a href="{{url}}" class="post-card-link">Read Case Story →</a>
         </div>
       </article>
     {{/foreach}}
   {{else}}
-    {{!-- This shows if no posts with that tag are found --}}
     <p class="no-posts">Our latest impact stories are being documented. Check back soon!</p>
   {{/get}}
 </div>
-
 
     <div class="section-footer-link">
       <a href="{{@site.url}}/our-works/" class="btn btn-outline">View All Updates</a>
@@ -171,11 +145,7 @@
   {{else}}
     <div class="container mission-inner">
       <div class="mission-visual" aria-hidden="true">
-        {{#if @custom.flagship_image}}
-          <img src="{{@custom.flagship_image}}" alt="{{@custom.flagship_section_title}}" class="mission-image">
-        {{else}}
-          <div class="mission-plant-icon">💰</div>
-        {{/if}}
+        <div class="mission-plant-icon">💰</div>
       </div>
       <div class="mission-text">
         <span class="section-eyebrow">Flagship Programmes</span>

@@ -30,34 +30,31 @@
     <section class="partner-options-section section-padding section-bg-light">
         <div class="container">
             <div class="partner-grid">
-                
-                {{!-- Corporate/CSR --}}
-                <div class="partner-card">
-                    <div class="partner-card-content">
-                        <h3>Corporate & CSR</h3>
-                        <p>Partner with us to scale women-led livelihood programs. Your CSR contributions can provide training kits, raw materials, and infrastructure for our clusters.</p>
-                        <a href="{{@custom.partner_csr_url}}" class="btn btn-primary" target="_blank" rel="noopener">Partner with us</a>
-                    </div>
-                </div>
-
-                {{!-- Volunteering --}}
-                <div class="partner-card">
-                    <div class="partner-card-content">
-                        <h3>Volunteer</h3>
-                        <p>Share your skills in financial literacy, marketing, or design. Whether remotely or on-field in Satna, your time can transform lives.</p>
-                        <a href="{{@custom.partner_volunteer_url}}" class="btn btn-primary" target="_blank" rel="noopener">Apply to Volunteer</a>
-                    </div>
-                </div>
-
-                {{!-- Donations --}}
-                <div class="partner-card card-highlight">
-                    <div class="partner-card-content">
-                        <h3>Direct Support</h3>
-                        <p>Every contribution helps a rural woman earn her first paycheck. Support our mission through one-time or recurring financial contributions.</p>
-                        <a href="{{@custom.partner_donate_url}}" class="btn btn-accent" target="_blank" rel="noopener">Donate Now</a>
-                    </div>
-                </div>
-
+                {{#get "posts" filter="tag:hash-partnership" limit="3" include="tags" order="published_at asc"}}
+                    {{#foreach posts}}
+                        {{!-- Using #highlight tag to apply the card-highlight class --}}
+                        <div class="partner-card {{#has tag="#highlight"}}card-highlight{{/has}}">
+                            {{#if feature_image}}
+                                <div class="partner-card-image">
+                                    <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
+                                </div>
+                            {{/if}}
+                            <div class="partner-card-content">
+                                <h3>{{title}}</h3>
+                                <p>{{excerpt}}</p>
+                                {{!-- The content of the post is used as the button label --}}
+                                <a href="{{canonical_url}}" 
+                                   class="btn {{#has tag="#highlight"}}btn-accent{{else}}btn-primary{{/has}}" 
+                                   target="_blank" 
+                                   rel="noopener">
+                                    {{content}}
+                                </a>
+                            </div>
+                        </div>
+                    {{/foreach}}
+                {{else}}
+                    <p class="no-posts">Our partnership opportunities are currently being updated. Please check back soon!</p>
+                {{/get}}
             </div>
         </div>
     </section>

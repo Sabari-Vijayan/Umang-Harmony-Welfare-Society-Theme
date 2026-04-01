@@ -29,7 +29,7 @@
 
 {{!-- SEO: Ghost injects correct meta tags via ghost_head in default.hbs --}}
 
-<article class="post-single" itemscope itemtype="https://schema.org/Article">
+<article class="post-single {{post_class}}" itemscope itemtype="https://schema.org/Article">
 
   {{!-- 1. POST HEADER --}}
   <header class="post-header {{#unless feature_image}}post-header--no-image{{/unless}}">

@@ -2,6 +2,8 @@
 
 {{#post}}
 
+<article class="works-page {{post_class}}">
+
 <header class="works-header {{#if feature_image}}has-image{{/if}}" 
      {{#if feature_image}}style="background-image: url('{{feature_image}}');"{{/if}}>
     <div class="container">
@@ -35,7 +37,7 @@
 
         {{!-- 2. Vertical Works List --}}
         <div class="works-list">
-            {{#get "posts" filter="tag:-hash-founder+tag:-hash-contact-person" limit="100" include="tags,authors" order="published_at desc"}}
+            {{#get "posts" filter="tag:-hash-founder+tag:-hash-contact-person+tag:-hash-partnership" limit="100" include="tags,authors" order="published_at desc"}}
                 {{#foreach posts}}
                     <article class="work-item">
                         
@@ -63,5 +65,7 @@
 
     </div>
 </div>
+
+</article>
 
 {{/post}}
